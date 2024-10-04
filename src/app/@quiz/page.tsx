@@ -5,12 +5,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import useQuiz from "@/app/store";
 import { cn } from "@/lib/utils";
 import { Skeleton } from "@/components/ui/skeleton";
-import dynamic from "next/dynamic";
 import { Player } from "@lottiefiles/react-lottie-player";
 
 // Add Caveat font import
 import { Caveat } from "next/font/google";
-import Image from "next/image";
 
 const caveat = Caveat({
   subsets: ["latin"],

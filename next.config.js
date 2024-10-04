@@ -3,6 +3,9 @@ const nextConfig = {
   experimental: {
     appDir: true,
   },
+  images: {
+    domains: ['img.freepik.com'], // Add the domain of your external images here
+  },
 }
 
-module.exports = nextConfig
+module.exports = nextConfig;

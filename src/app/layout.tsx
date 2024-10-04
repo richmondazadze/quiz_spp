@@ -19,6 +19,7 @@ const geistMono = localFont({
 
 // Add Caveat font import
 import { Caveat } from "next/font/google";
+import Image from "next/image";
 
 const caveat = Caveat({
   subsets: ["latin"],
@@ -52,7 +53,7 @@ export default function RootLayout({
   quiz: React.ReactNode;
 }) {
   const config = useQuiz((state) => state.config);
-  let render = config.status ? quiz : children;
+  const render = config.status ? quiz : children;
 
   return (
     <html lang="en">
@@ -66,11 +67,14 @@ export default function RootLayout({
                 onClick={() => window.location.reload()}
                 className="flex items-center space-x-4 cursor-pointer"
               >
-                <img
+                <Image
                   src="https://img.freepik.com/free-psd/3d-render-neon-letter-icon_23-2151653660.jpg?ga=GA1.1.1031119422.1713528645&semt=ais_hybrid"
                   alt="Quiz Master Logo"
                   className="w-16 h-16 rounded-full"
+                  width={64} // Set appropriate width
+                  height={64} // Set appropriate height
                 />
+
                 <h1
                   className={`text-4xl font-bold text-white ${caveat.className}`}
                 >
