@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import useQuiz from "./store";
 import Button from "@/components/Button";
@@ -15,13 +15,38 @@ const caveat = Caveat({
 
 export default function Home() {
   const { config, addNumberOfQuestions } = useQuiz();
+  const [inputValue, setInputValue] = useState(config.numberOfQuestions.toString());
+
+  useEffect(() => {
+    setInputValue(config.numberOfQuestions.toString());
+  }, [config.numberOfQuestions]);
 
   const handleNumberOfQuestionsChange = (
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
-    const value = parseInt(e.target.value, 10);
-    if (value >= 5 && value <= 50) {
-      addNumberOfQuestions(value);
+    const value = e.target.value;
+    setInputValue(value);
+    
+    const numValue = parseInt(value, 10);
+    if (!isNaN(numValue)) {
+      if (numValue < 5) {
+        addNumberOfQuestions(5);
+      } else if (numValue > 50) {
+        addNumberOfQuestions(50);
+      } else {
+        addNumberOfQuestions(numValue);
+      }
+    }
+  };
+
+  const handleInputBlur = () => {
+    const numValue = parseInt(inputValue, 10);
+    if (isNaN(numValue) || numValue < 5) {
+      setInputValue('5');
+      addNumberOfQuestions(5);
+    } else if (numValue > 50) {
+      setInputValue('50');
+      addNumberOfQuestions(50);
     }
   };
 
@@ -54,7 +79,7 @@ export default function Home() {
         className="p-6 sm:p-8 my-6 sm:my-10 rounded-lg shadow-xl w-full max-w-2xl bg-white"
       >
         <div className="mb-6">
-          <label
+        <label
             htmlFor="numberOfQuestions"
             className="block mb-2 text-2sm font-bold text-gray-900"
           >
@@ -63,8 +88,9 @@ export default function Home() {
           <input
             type="number"
             id="numberOfQuestions"
-            value={config.numberOfQuestions}
+            value={inputValue}
             onChange={handleNumberOfQuestionsChange}
+            onBlur={handleInputBlur}
             min={5}
             max={50}
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 transition duration-300 hover:border-blue-300"
