@@ -56,7 +56,7 @@ export default function Home() {
         <div className="mb-6">
           <label
             htmlFor="numberOfQuestions"
-            className="block mb-2 text-2sm font-medium font-bold text-gray-900"
+            className="block mb-2 text-2sm font-bold text-gray-900"
           >
             Number of Questions
           </label>

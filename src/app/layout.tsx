@@ -4,7 +4,7 @@ import React from "react";
 import localFont from "next/font/local";
 import "./globals.css";
 import useQuiz from "./store";
-import { Github, Linkedin } from "lucide-react";
+import { Github, Linkedin, LucideIcon } from "lucide-react";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -26,25 +26,11 @@ const caveat = Caveat({
   variable: "--font-caveat",
 });
 
-const SocialLink = ({ href, icon: Icon, label }) => (
-  <a
-    href={href}
-    target="_blank"
-    rel="noopener noreferrer"
-    className="text-blue-600 hover:text-blue-800 transition-colors duration-300 flex items-center space-x-2"
-    aria-label={label}
-  >
-    <Icon size={24} />
-    <span className="sr-only">{label}</span>
-  </a>
-);
-
-const GlassPanel = ({ children }) => (
+const GlassPanel = ({ children }: { children: React.ReactNode }) => (
   <div className="backdrop-blur-md bg-white bg-opacity-20 rounded-xl shadow-lg p-6 border border-white border-opacity-20">
     {children}
   </div>
 );
-
 export default function RootLayout({
   children,
   quiz,
@@ -82,17 +68,27 @@ export default function RootLayout({
                 </h1>
               </div>
               <div className="flex space-x-4">
-                <SocialLink
-                  href="https://github.com/richmondazadze"
-                  icon={Github}
-                  label="GitHub"
-                />
-                <SocialLink
-                  href="https://www.linkedin.com/in/richmond-azadze/"
-                  icon={Linkedin}
-                  label="LinkedIn"
-                />
-              </div>
+<a
+  href="https://github.com/richmondazadze"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="text-blue-600 hover:text-blue-800 transition-colors duration-300 flex items-center space-x-2"
+  aria-label="GitHub"
+>
+  <Github size={24} />
+  <span className="sr-only">GitHub</span>
+</a>
+<a
+  href="https://www.linkedin.com/in/richmond-azadze/"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="text-blue-600 hover:text-blue-800 transition-colors duration-300 flex items-center space-x-2"
+  aria-label="LinkedIn"
+>
+  <Linkedin size={24} />
+  <span className="sr-only">LinkedIn</span>
+</a>
+</div>
             </div>
           </GlassPanel>
         </header>
