@@ -4,7 +4,7 @@ import React from "react";
 import localFont from "next/font/local";
 import "./globals.css";
 import useQuiz from "./store";
-import { Github, Linkedin, LucideIcon } from "lucide-react";
+import { Github, Linkedin } from "lucide-react";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
